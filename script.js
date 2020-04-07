@@ -4,12 +4,15 @@ bonus2 = 1;
 prix=25;
 prix2=150;
 isAutoOn = false;
+alreadyOn= false;
+levelAuto = 0;
+prixF=5
 
 
 function clicktest() {
 	nbreClique= nbreClique + bonus;
-	recharger();
 	modification();
+	recharger();
 }
 
 function achatfour() {
@@ -28,11 +31,14 @@ function assezCanelé(){
 	if(nbreClique<prix){
 		return false
 	}
+}
+
+function assezCanelé2(){
 	if(nbreClique>=prix2){
-		return 'oui'
+		return true
 	}
 	if(nbreClique<prix2){
-		return 'non'
+		return false
 	}
 }
 
@@ -43,20 +49,38 @@ function modification(){
 	if(!assezCanelé()){
 		document.getElementById("four").innerHTML = '<button disabled="on "id="four" onclick="achatfour()" >Acheter un four ('+prix+' canelés)</button>';
 	}
-	if(assezCanelé()=='oui'){
-		document.getElementById("auto").innerHTML='<button onclick="autoclick()">Auto-Click</button>';
+	if(assezCanelé2() && bonus>=prixF){
+		document.getElementById("auto").innerHTML='<button onclick="autoclick()">Engager un patissier ('+prixF+' fours minimum et '+prix2+' canelés)</button>';
 	}
-	if(assezCanelé()=='non'){
-		document.getElementById("auto").innerHTML='<button onclick="autoclick()" disabled="on">Auto-Click</button>';
+	if(!assezCanelé2()){
+		document.getElementById("auto").innerHTML='<button onclick="autoclick()" disabled="on">Engager un patissier ('+prixF+' fours minimum et '+prix2+' canelés)</button>';
 	}
 }
 
 function recharger(){
 	document.getElementById("nbreCanelés").innerHTML = nbreClique;
-	document.getElementById("levelFour").innerHTML = bonus - 1;
+	document.getElementById("levelFour").innerHTML = bonus;
 }
 
 function autoclick(){
-	setInterval(function(){ nbreClique=nbreClique+bonus2;recharger() }, 1000);
+	if(levelAuto==0){
+		nbreClique = nbreClique - prix2;
+			recharger();
+		setInterval(function(){ nbreClique=nbreClique+bonus2;recharger();modification() }, 1000);
+		document.getElementById("auto").innerHTML='<button onclick="autoclick()" disabled="on">Engager un patissier ('+prixF+' fours minimum et '+prix2+' canelés)</button>';
+		alreadyOn = true;
+		levelAuto++;
+		prix2=Math.round(prix2*1.2);
+		prixF=Math.round(prixF*1.2);
+		document.getElementById("cuistot").innerHTML='Vous avez engagez '+bonus2+' cuisinier !';
+	}
+	else{
+		document.getElementById("auto").innerHTML='<button onclick="autoclick()" disabled="on">Engager un patissier ('+prixF+' fours minimum et '+prix2+' canelés)</button>';
+		nbreClique = nbreClique - prix2;
+		prix2=Math.round(prix2*1.2);
+		prixF=Math.round(prixF*1.2);
+		bonus2++;
+		document.getElementById("cuistot").innerHTML='Vous avez engagez '+bonus2+' cuisinier !';
+	}
 }
 
