@@ -1,6 +1,6 @@
 #Canelé{
-	height: 500px;
-	align-content: justify;
+	height: 400px;
+	vertical-align: bottom;
 }
 
 #titre_1{
@@ -8,12 +8,21 @@
 	margin-bottom: 5px;
 	color: #5f021f;
 	font-family: 'Pacifico', arial;
+	text-align: center;
 }
 
 body{
 	font-family: 'Neucha', arial;
 }
 
-#nbreCanelés,#levelFour{
+#nbreCanelés,#levelFour,#levelPati{
 	color: #a47;
+}
+
+
+
+#design{
+	flex: 1;
+	flex-direction: row;
+	align-content: center;
 }
