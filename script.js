@@ -11,7 +11,7 @@ function clicktest() {
 function achatfour() {
 	nbreClique=nbreClique-25;
 	bonus++;
-	prix = prix+5;
+	prix = Math.round(prix*1.2);
 	modification();
 	recharger();
 }
@@ -28,10 +28,10 @@ function assezCanelé(){
 
 function modification(){
 	if(assezCanelé()){
-		document.getElementById("four").innerHTML = '<button id="four" onclick="achatfour()" >Acheter un four (25 canelés)</button>';
+		document.getElementById("four").innerHTML = '<button id="four" onclick="achatfour()" >Acheter un four ('+prix+' canelés)</button>';
 	}
 	if(!assezCanelé()){
-		document.getElementById("four").innerHTML = '<button disabled="on "id="four" onclick="achatfour()" >Acheter un four (25 canelés)</button>';
+		document.getElementById("four").innerHTML = '<button disabled="on "id="four" onclick="achatfour()" >Acheter un four ('+prix+' canelés)</button>';
 	}
 }
 
