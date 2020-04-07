@@ -1,6 +1,5 @@
 #Canelé{
 	height: 500px;
-	max-width: 100%;
 }
 
 #titre_1{
@@ -12,4 +11,8 @@
 
 body{
 	font-family: 'Neucha', arial;
+}
+
+#nbreCanelés{
+	color: #a47;
 }
