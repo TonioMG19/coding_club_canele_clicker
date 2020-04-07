@@ -1,3 +1,11 @@
 #Canelé{
 	height: 500px;
+	max-width: 100%;
+}
+
+#titre_1{
+	font-size: 22px;
+	margin-bottom: 5px;
+	color: #5f021f;
+	font-family: 'Pacifico', arial;
 }
